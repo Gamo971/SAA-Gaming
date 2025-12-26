@@ -1,4 +1,4 @@
-# StarPanel
+# SAA-Gaming
 
 Une application Android qui transforme ton appareil en panneau de contrôle multi-pages pour piloter Star Citizen (et d'autres jeux), en envoyant des commandes à un agent Windows qui les convertit en joystick virtuel et actions clavier.
 
