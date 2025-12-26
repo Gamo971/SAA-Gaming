@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StarPanel</string>
+    <string name="connecting">Connexion en cours…</string>
+    <string name="connected">Connecté</string>
+    <string name="disconnected">Déconnecté</string>
+    <string name="pairing_code">Code de pairing</string>
+    <string name="enter_pairing_code">Saisir le code de pairing</string>
+    <string name="pairing_success">Pairing réussi</string>
+    <string name="pairing_error">Erreur de pairing</string>
+    <string name="latency">Latence: %1$d ms</string>
+    <string name="no_host_found">Aucun PC trouvé</string>
+    <string name="searching_host">Recherche du PC…</string>
+    <string name="profile">Profil</string>
+    <string name="page">Page</string>
+    <string name="settings">Paramètres</string>
+    <string name="edit">Éditer</string>
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="export">Exporter</string>
+    <string name="import">Importer</string>
+</resources>
