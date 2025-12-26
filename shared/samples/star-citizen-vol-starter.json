@@ -1,0 +1,441 @@
+{
+  "version": "1.0",
+  "profileId": "star_citizen_vol_starter",
+  "name": "Star Citizen - Vol Starter",
+  "description": "Profil de base pour le vol dans Star Citizen",
+  "author": "StarPanel Community",
+  "pages": [
+    {
+      "pageId": "page_vol_1",
+      "name": "Vol 1",
+      "layout": {
+        "columns": 4,
+        "rows": 6,
+        "widgets": [
+          {
+            "widgetId": "slider_throttle",
+            "type": "slider",
+            "position": {
+              "column": 0,
+              "row": 0,
+              "columnSpan": 4,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Throttle",
+              "color": "#4CAF50",
+              "showValue": true
+            },
+            "config": {
+              "min": 0.0,
+              "max": 1.0,
+              "default": 0.0,
+              "curve": "linear",
+              "centerMode": false
+            },
+            "actions": {
+              "onChange": [
+                {
+                  "type": "vigem_axis",
+                  "axis": "right_trigger",
+                  "value": "$value"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "slider_speed_limiter",
+            "type": "slider",
+            "position": {
+              "column": 0,
+              "row": 1,
+              "columnSpan": 4,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Speed Limiter",
+              "color": "#2196F3",
+              "showValue": true
+            },
+            "config": {
+              "min": 0.0,
+              "max": 1.0,
+              "default": 0.5,
+              "curve": "linear",
+              "snapPoints": [0.0, 0.25, 0.5, 0.75, 1.0]
+            },
+            "actions": {
+              "onChange": [
+                {
+                  "type": "vigem_axis",
+                  "axis": "left_trigger",
+                  "value": "$value"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "btn_landing_gear",
+            "type": "button",
+            "position": {
+              "column": 0,
+              "row": 2,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Landing Gear",
+              "backgroundColor": "#FF9800",
+              "textColor": "#FFFFFF",
+              "icon": "ic_landing_gear"
+            },
+            "behavior": "tap",
+            "actions": {
+              "onTap": [
+                {
+                  "type": "keyboard",
+                  "key": "N",
+                  "action": "tap"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "toggle_vtol",
+            "type": "toggle",
+            "position": {
+              "column": 2,
+              "row": 2,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "VTOL",
+              "onColor": "#4CAF50",
+              "offColor": "#757575",
+              "icon": "ic_vtol"
+            },
+            "actions": {
+              "onToggleOn": [
+                {
+                  "type": "keyboard",
+                  "key": "K",
+                  "action": "tap"
+                }
+              ],
+              "onToggleOff": [
+                {
+                  "type": "keyboard",
+                  "key": "K",
+                  "action": "tap"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "btn_quantum_travel",
+            "type": "button",
+            "position": {
+              "column": 0,
+              "row": 3,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Quantum Travel",
+              "backgroundColor": "#9C27B0",
+              "textColor": "#FFFFFF",
+              "icon": "ic_quantum"
+            },
+            "behavior": "hold",
+            "actions": {
+              "onHold": [
+                {
+                  "type": "keyboard",
+                  "key": "B",
+                  "action": "down"
+                }
+              ],
+              "onRelease": [
+                {
+                  "type": "keyboard",
+                  "key": "B",
+                  "action": "up"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "btn_boost",
+            "type": "button",
+            "position": {
+              "column": 2,
+              "row": 3,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Boost",
+              "backgroundColor": "#F44336",
+              "textColor": "#FFFFFF",
+              "icon": "ic_boost"
+            },
+            "behavior": "hold",
+            "actions": {
+              "onHold": [
+                {
+                  "type": "keyboard",
+                  "key": "Left Shift",
+                  "action": "down"
+                }
+              ],
+              "onRelease": [
+                {
+                  "type": "keyboard",
+                  "key": "Left Shift",
+                  "action": "up"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "radial_weapons",
+            "type": "radial",
+            "position": {
+              "column": 0,
+              "row": 4,
+              "columnSpan": 2,
+              "rowSpan": 2
+            },
+            "style": {
+              "label": "Armes",
+              "segments": 8
+            },
+            "segments": [
+              {
+                "segmentId": 0,
+                "label": "Laser 1",
+                "action": {
+                  "type": "keyboard",
+                  "key": "1",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 1,
+                "label": "Laser 2",
+                "action": {
+                  "type": "keyboard",
+                  "key": "2",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 2,
+                "label": "Missile",
+                "action": {
+                  "type": "keyboard",
+                  "key": "3",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 3,
+                "label": "Counter",
+                "action": {
+                  "type": "keyboard",
+                  "key": "4",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 4,
+                "label": "Shield",
+                "action": {
+                  "type": "keyboard",
+                  "key": "5",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 5,
+                "label": "Power",
+                "action": {
+                  "type": "keyboard",
+                  "key": "6",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 6,
+                "label": "Target",
+                "action": {
+                  "type": "keyboard",
+                  "key": "T",
+                  "action": "tap"
+                }
+              },
+              {
+                "segmentId": 7,
+                "label": "Lock",
+                "action": {
+                  "type": "keyboard",
+                  "key": "R",
+                  "action": "tap"
+                }
+              }
+            ]
+          },
+          {
+            "widgetId": "btn_landing_sequence",
+            "type": "button",
+            "position": {
+              "column": 2,
+              "row": 4,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Landing Sequence",
+              "backgroundColor": "#607D8B",
+              "textColor": "#FFFFFF",
+              "icon": "ic_landing"
+            },
+            "behavior": "tap",
+            "actions": {
+              "onTap": [
+                {
+                  "type": "macro",
+                  "macroId": "macro_landing_sequence"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "btn_page_2",
+            "type": "button",
+            "position": {
+              "column": 2,
+              "row": 5,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Page 2 →",
+              "backgroundColor": "#9E9E9E",
+              "textColor": "#FFFFFF"
+            },
+            "behavior": "tap",
+            "actions": {
+              "onTap": [
+                {
+                  "type": "page_switch",
+                  "pageId": "page_vol_2"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "pageId": "page_vol_2",
+      "name": "Vol 2",
+      "layout": {
+        "columns": 4,
+        "rows": 6,
+        "widgets": [
+          {
+            "widgetId": "slider_mining_laser",
+            "type": "slider",
+            "position": {
+              "column": 0,
+              "row": 0,
+              "columnSpan": 4,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "Mining Laser Power",
+              "color": "#FF9800",
+              "showValue": true
+            },
+            "config": {
+              "min": 0.0,
+              "max": 1.0,
+              "default": 0.0,
+              "curve": "exponential"
+            },
+            "actions": {
+              "onChange": [
+                {
+                  "type": "vigem_axis",
+                  "axis": "left_trigger",
+                  "value": "$value"
+                }
+              ]
+            }
+          },
+          {
+            "widgetId": "btn_page_1",
+            "type": "button",
+            "position": {
+              "column": 0,
+              "row": 5,
+              "columnSpan": 2,
+              "rowSpan": 1
+            },
+            "style": {
+              "label": "← Page 1",
+              "backgroundColor": "#9E9E9E",
+              "textColor": "#FFFFFF"
+            },
+            "behavior": "tap",
+            "actions": {
+              "onTap": [
+                {
+                  "type": "page_switch",
+                  "pageId": "page_vol_1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "macros": [
+    {
+      "macroId": "macro_landing_sequence",
+      "name": "Séquence d'atterrissage",
+      "steps": [
+        {
+          "action": "keyboard",
+          "key": "N",
+          "action": "down",
+          "delay": 0
+        },
+        {
+          "action": "delay",
+          "ms": 100
+        },
+        {
+          "action": "keyboard",
+          "key": "N",
+          "action": "up",
+          "delay": 0
+        },
+        {
+          "action": "delay",
+          "ms": 500
+        },
+        {
+          "action": "keyboard",
+          "key": "K",
+          "action": "tap",
+          "delay": 0
+        }
+      ],
+      "mode": "oneshot"
+    }
+  ]
+}
