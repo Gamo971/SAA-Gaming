@@ -1,0 +1,358 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StarPanel Profile",
+  "type": "object",
+  "required": ["version", "profileId", "name", "pages"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Version du format de profil"
+    },
+    "profileId": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Identifiant unique du profil"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom affiché du profil"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description du profil"
+    },
+    "author": {
+      "type": "string",
+      "description": "Auteur du profil"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Page"
+      }
+    },
+    "macros": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Macro"
+      }
+    }
+  },
+  "definitions": {
+    "Page": {
+      "type": "object",
+      "required": ["pageId", "name", "layout"],
+      "properties": {
+        "pageId": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "layout": {
+          "$ref": "#/definitions/Layout"
+        }
+      }
+    },
+    "Layout": {
+      "type": "object",
+      "required": ["columns", "rows", "widgets"],
+      "properties": {
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "widgets": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/ButtonWidget" },
+              { "$ref": "#/definitions/SliderWidget" },
+              { "$ref": "#/definitions/ToggleWidget" },
+              { "$ref": "#/definitions/RadialWidget" }
+            ]
+          }
+        }
+      }
+    },
+    "Position": {
+      "type": "object",
+      "required": ["column", "row"],
+      "properties": {
+        "column": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "row": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "columnSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        },
+        "rowSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    },
+    "ButtonWidget": {
+      "type": "object",
+      "required": ["widgetId", "type", "position", "actions"],
+      "properties": {
+        "widgetId": {
+          "type": "string"
+        },
+        "type": {
+          "const": "button"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "style": {
+          "$ref": "#/definitions/ButtonStyle"
+        },
+        "behavior": {
+          "type": "string",
+          "enum": ["tap", "hold", "toggle", "doubleTap", "repeat"],
+          "default": "tap"
+        },
+        "actions": {
+          "$ref": "#/definitions/WidgetActions"
+        }
+      }
+    },
+    "SliderWidget": {
+      "type": "object",
+      "required": ["widgetId", "type", "position", "config", "actions"],
+      "properties": {
+        "widgetId": {
+          "type": "string"
+        },
+        "type": {
+          "const": "slider"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "style": {
+          "$ref": "#/definitions/SliderStyle"
+        },
+        "config": {
+          "$ref": "#/definitions/SliderConfig"
+        },
+        "actions": {
+          "$ref": "#/definitions/WidgetActions"
+        }
+      }
+    },
+    "ToggleWidget": {
+      "type": "object",
+      "required": ["widgetId", "type", "position", "actions"],
+      "properties": {
+        "widgetId": {
+          "type": "string"
+        },
+        "type": {
+          "const": "toggle"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "style": {
+          "$ref": "#/definitions/ToggleStyle"
+        },
+        "actions": {
+          "$ref": "#/definitions/WidgetActions"
+        }
+      }
+    },
+    "RadialWidget": {
+      "type": "object",
+      "required": ["widgetId", "type", "position", "segments"],
+      "properties": {
+        "widgetId": {
+          "type": "string"
+        },
+        "type": {
+          "const": "radial"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "style": {
+          "$ref": "#/definitions/RadialStyle"
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/definitions/RadialSegment"
+          }
+        }
+      }
+    },
+    "ButtonStyle": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "textColor": { "type": "string" },
+        "icon": { "type": "string" }
+      }
+    },
+    "SliderStyle": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "color": { "type": "string" },
+        "showValue": { "type": "boolean" }
+      }
+    },
+    "ToggleStyle": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "onColor": { "type": "string" },
+        "offColor": { "type": "string" },
+        "icon": { "type": "string" }
+      }
+    },
+    "RadialStyle": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "segments": { "type": "integer", "enum": [4, 6, 8, 12] },
+        "colors": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "SliderConfig": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "default": { "type": "number" },
+        "curve": { "type": "string", "enum": ["linear", "exponential"] },
+        "centerMode": { "type": "boolean" },
+        "snapPoints": { "type": "array", "items": { "type": "number" } },
+        "fineControl": { "type": "boolean" }
+      }
+    },
+    "RadialSegment": {
+      "type": "object",
+      "required": ["segmentId", "label"],
+      "properties": {
+        "segmentId": { "type": "integer", "minimum": 0 },
+        "label": { "type": "string" },
+        "action": { "$ref": "#/definitions/Action" }
+      }
+    },
+    "WidgetActions": {
+      "type": "object",
+      "properties": {
+        "onTap": { "type": "array", "items": { "$ref": "#/definitions/Action" } },
+        "onHold": { "type": "array", "items": { "$ref": "#/definitions/Action" } },
+        "onRelease": { "type": "array", "items": { "$ref": "#/definitions/Action" } },
+        "onToggleOn": { "type": "array", "items": { "$ref": "#/definitions/Action" } },
+        "onToggleOff": { "type": "array", "items": { "$ref": "#/definitions/Action" } },
+        "onChange": { "type": "array", "items": { "$ref": "#/definitions/Action" } }
+      }
+    },
+    "Action": {
+      "type": "object",
+      "required": ["type"],
+      "oneOf": [
+        { "$ref": "#/definitions/KeyboardAction" },
+        { "$ref": "#/definitions/ViGEmButtonAction" },
+        { "$ref": "#/definitions/ViGEmAxisAction" },
+        { "$ref": "#/definitions/MacroAction" },
+        { "$ref": "#/definitions/PageSwitchAction" }
+      ]
+    },
+    "KeyboardAction": {
+      "type": "object",
+      "required": ["type", "key", "action"],
+      "properties": {
+        "type": { "const": "keyboard" },
+        "key": { "type": "string" },
+        "action": { "type": "string", "enum": ["tap", "down", "up"] }
+      }
+    },
+    "ViGEmButtonAction": {
+      "type": "object",
+      "required": ["type", "button", "action"],
+      "properties": {
+        "type": { "const": "vigem_button" },
+        "button": { "type": "integer", "minimum": 0, "maximum": 15 },
+        "action": { "type": "string", "enum": ["press", "release", "toggle"] }
+      }
+    },
+    "ViGEmAxisAction": {
+      "type": "object",
+      "required": ["type", "axis"],
+      "properties": {
+        "type": { "const": "vigem_axis" },
+        "axis": {
+          "type": "string",
+          "enum": ["left_trigger", "right_trigger", "left_stick_x", "left_stick_y", "right_stick_x", "right_stick_y"]
+        },
+        "value": { "oneOf": [{ "type": "number" }, { "type": "string", "pattern": "^\\$value$" }] }
+      }
+    },
+    "MacroAction": {
+      "type": "object",
+      "required": ["type", "macroId"],
+      "properties": {
+        "type": { "const": "macro" },
+        "macroId": { "type": "string" }
+      }
+    },
+    "PageSwitchAction": {
+      "type": "object",
+      "required": ["type", "pageId"],
+      "properties": {
+        "type": { "const": "page_switch" },
+        "pageId": { "type": "string" }
+      }
+    },
+    "Macro": {
+      "type": "object",
+      "required": ["macroId", "name", "steps", "mode"],
+      "properties": {
+        "macroId": { "type": "string" },
+        "name": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/MacroStep" }
+        },
+        "mode": { "type": "string", "enum": ["oneshot", "maintain"] }
+      }
+    },
+    "MacroStep": {
+      "type": "object",
+      "required": ["action", "delay"],
+      "properties": {
+        "action": { "type": "string" },
+        "delay": { "type": "integer", "minimum": 0 },
+        "key": { "type": "string" },
+        "button": { "type": "integer" },
+        "ms": { "type": "integer" }
+      }
+    }
+  }
+}
