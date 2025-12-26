@@ -1,0 +1,55 @@
+# Build outputs
+**/bin/
+**/obj/
+**/build/
+**/.gradle/
+**/app/build/
+**/out/
+
+# IDE
+.idea/
+.vs/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Android
+*.apk
+*.ap_
+*.aab
+local.properties
+*.iml
+.gradle/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# .NET
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+packages/
+*.nupkg
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Secrets
+secrets.json
+*.key
+*.p12
